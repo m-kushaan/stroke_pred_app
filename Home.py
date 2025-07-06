@@ -1,4 +1,3 @@
-from audioop import avg
 from queue import Empty
 from re import A
 from selectors import EVENT_READ

@@ -1,7 +1,6 @@
 from pickletools import int4
 import statistics
 import streamlit as st
-from audioop import avg
 from queue import Empty
 from selectors import EVENT_READ
 import streamlit as st
