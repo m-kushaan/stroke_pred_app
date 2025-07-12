@@ -23,8 +23,8 @@ if os.path.exists('style1.css'):
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 # Load model
-if os.path.exists('model_final.sav'):
-    model = pickle.load(open('model_final.sav', 'rb'))
+if os.path.exists('model_knn.sav'):
+    model = pickle.load(open('model_knn.sav', 'rb'))
 else:
     st.error("Model file not found.")
     st.stop()
