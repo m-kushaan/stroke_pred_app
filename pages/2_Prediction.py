@@ -131,14 +131,14 @@ try:
         stroke = model.predict(user_data)
 
         if stroke == 1:
-            st.markdown(':red[You have fair chances of having a stroke in future...]')
+            st.subheader(':red[You have fair chances of having a stroke in future...]')
             st.subheader(" 1. Choose healthy foods and drinks")
             st.subheader(" 2. Keep your weight under control." )
             st.subheader(" 3. Do regular physical activity.")
             st.subheader(" 4. Avoid smoking and drinking alcohol. ")
             user_data.loc[0, 'stroke'] = 1
         else:
-            st.markdown(':green[The model predicts no significant stroke risk.]')
+            st.subheader(':green[The model predicts no significant stroke risk.]')
             user_data.loc[0, 'stroke'] = 0
 
         # Save prediction to file
