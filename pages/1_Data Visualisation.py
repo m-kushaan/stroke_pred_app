@@ -39,7 +39,7 @@ for i in base_df['age']:
     else:
         age_grp.append('Senior')
 base_df['age_group']=age_grp
-base_df.head()
+st.dataframe(base_df.head())
 
 st.header("Box plot of age_group vs BMI")
 
@@ -48,8 +48,15 @@ sns.boxplot(x=base_df["age_group"], y=base_df["bmi"])
 st.pyplot(fig)
 
 st.header("Heatmap")
-sns.heatmap(base_df.corr(),annot=True,linewidth=0.5,fmt='0.2f')
+
+# Select only numeric columns and drop rows with NaNs (optional)
+numeric_df = base_df.select_dtypes(include='number').dropna()
+
+# Generate new figure
+fig = plt.figure(figsize=(10, 6))
+sns.heatmap(numeric_df.corr(), annot=True, linewidth=0.5, fmt='.2f', cmap="coolwarm")
 st.pyplot(fig)
+
 
 
 
