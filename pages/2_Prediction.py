@@ -1,14 +1,9 @@
-from pickletools import int4
-import statistics
 import streamlit as st
 from queue import Empty
-from selectors import EVENT_READ
-import streamlit as st
 import pickle
 import pandas as pd
 import numpy as np
 from PIL import Image
-import joblib
 from sklearn.preprocessing import StandardScaler
 import sys
 sys.tracebacklimit = 0
