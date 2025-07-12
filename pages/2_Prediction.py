@@ -124,51 +124,52 @@ if os.path.exists('pre_d.csv'):
 else:
     p_df = pd.DataFrame()
 
-# st.header('Do you have chances of stroke in future?')
+st.header('Do you have chances of stroke in future?')
 
-# try:
-#     if st.button('PREDICT'):
-#         st.write("✅ Input Columns:", user_data.columns.tolist())  # Debug line
-#         st.write("✅ Input Shape:", user_data.shape)
+try:
+    if st.button('PREDICT'):
+        stroke = model.predict(user_data)
 
-#         stroke = model.predict(user_data)
-
-#         if stroke == 1:
-#             st.markdown(':red[You have fair chances of having a stroke in future...]')
-#             user_data.loc[0, 'stroke'] = 1
-#         else:
-#             st.markdown(':green[The model predicts no significant stroke risk.]')
-#             user_data.loc[0, 'stroke'] = 0
-
-#         # Save prediction to file
-#         if os.path.exists('pre_d.csv'):
-#             p_df = pd.read_csv('pre_d.csv')
-#         else:
-#             p_df = pd.DataFrame()
-
-#         p_df = pd.concat([p_df, user_data], ignore_index=True)
-#         p_df.to_csv('pre_d.csv', index=False)
-
-# except Exception as e:
-#     st.error(f"❌ An unexpected error occurred: {e}")
-
-
-st.header('Do you have a chances of stroke in future?')
-if st.button('PREDICT'):
-        if stroke==1:
-            st.markdown(':red[You have fair chances of having a stroke in future. Please take necessary precautions and consult your doctor. Some of the precautions are: ]')
-            user_data['stroke']=1
-            #st.markdown('<p class="big-font"> <ol > <li> Choose healthy foods and drinks </li> <li> Keep a healthy weight.</li> <li> Get regular physical activity. </li> <li> Quit smoking and alcohol.</li> </ol></p>', unsafe_allow_html=True)
-
+        if stroke == 1:
+            st.markdown(':red[You have fair chances of having a stroke in future...]')
             st.subheader(" 1. Choose healthy foods and drinks")
             st.subheader(" 2. Keep your weight under control." )
             st.subheader(" 3. Do regular physical activity.")
             st.subheader(" 4. Avoid smoking and drinking alcohol. ")
-            p_df = p_df.append(user_data, ignore_index = True)
-            p_df.to_csv('pre_d.csv', index = False) 
-        else:   
-            user_data['stroke']=0
-            st.markdown(':green[The model predicts that you do not have probable chances of having stroke in future, so no need to worry :) But keeping a healthy lifestyle is always beneficial.]')
-            p_df = p_df.append(user_data, ignore_index = True)
-            p_df.to_csv('pre_d.csv', index = False)
-# st.subheader('thanks')
+            user_data.loc[0, 'stroke'] = 1
+        else:
+            st.markdown(':green[The model predicts no significant stroke risk.]')
+            user_data.loc[0, 'stroke'] = 0
+
+        # Save prediction to file
+        if os.path.exists('pre_d.csv'):
+            p_df = pd.read_csv('pre_d.csv')
+        else:
+            p_df = pd.DataFrame()
+
+        p_df = pd.concat([p_df, user_data], ignore_index=True)
+        p_df.to_csv('pre_d.csv', index=False)
+
+except Exception as e:
+    st.error(f"❌ An unexpected error occurred: {e}")
+
+
+# st.header('Do you have a chances of stroke in future?')
+# if st.button('PREDICT'):
+#         if stroke==1:
+#             st.markdown(':red[You have fair chances of having a stroke in future. Please take necessary precautions and consult your doctor. Some of the precautions are: ]')
+#             user_data['stroke']=1
+#             #st.markdown('<p class="big-font"> <ol > <li> Choose healthy foods and drinks </li> <li> Keep a healthy weight.</li> <li> Get regular physical activity. </li> <li> Quit smoking and alcohol.</li> </ol></p>', unsafe_allow_html=True)
+
+#             st.subheader(" 1. Choose healthy foods and drinks")
+#             st.subheader(" 2. Keep your weight under control." )
+#             st.subheader(" 3. Do regular physical activity.")
+#             st.subheader(" 4. Avoid smoking and drinking alcohol. ")
+#             p_df = p_df.append(user_data, ignore_index = True)
+#             p_df.to_csv('pre_d.csv', index = False) 
+#         else:   
+#             user_data['stroke']=0
+#             st.markdown(':green[The model predicts that you do not have probable chances of having stroke in future, so no need to worry :) But keeping a healthy lifestyle is always beneficial.]')
+#             p_df = p_df.append(user_data, ignore_index = True)
+#             p_df.to_csv('pre_d.csv', index = False)
+# # st.subheader('thanks')
